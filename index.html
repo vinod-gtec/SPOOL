@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>SPOOL — your own spool of music</title>
+<meta name="description" content="A private, ad-free music deck that plays straight from your GitHub repo." />
+<meta name="theme-color" content="#0F1119" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="wordmark">SPOOL</div>
+    <div class="status" id="status">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">connecting</span>
+    </div>
+  </header>
+
+  <main class="deck">
+    <div class="disc-wrap">
+      <svg class="disc" id="disc" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="98" class="disc-rim" />
+        <circle cx="100" cy="100" r="78" class="disc-groove" />
+        <circle cx="100" cy="100" r="58" class="disc-groove" />
+        <circle cx="100" cy="100" r="38" class="disc-groove" />
+        <circle cx="100" cy="100" r="16" class="disc-label" />
+        <circle cx="100" cy="100" r="4" class="disc-pin" />
+      </svg>
+    </div>
+
+    <div class="now-playing">
+      <p class="track-counter" id="trackCounter">— / —</p>
+      <h1 class="track-title" id="trackTitle">Nothing loaded yet</h1>
+      <p class="track-sub" id="trackSub">Add files to your music folder to begin</p>
+    </div>
+
+    <div class="scrubber-row">
+      <span class="time mono" id="timeCurrent">0:00</span>
+      <input type="range" id="scrubber" class="scrubber" value="0" min="0" max="1000" step="1" aria-label="Seek" />
+      <span class="time mono" id="timeDuration">0:00</span>
+    </div>
+
+    <div class="transport">
+      <button class="tbtn small" id="shuffleBtn" title="Shuffle" aria-pressed="false">
+        <svg viewBox="0 0 24 24"><path d="M17 3l4 4-4 4M17 21l4-4-4-4M3 7h4l7 10h6M3 17h4l3.5-5" /></svg>
+      </button>
+      <button class="tbtn" id="prevBtn" title="Previous">
+        <svg viewBox="0 0 24 24"><path d="M6 6v12M18 6l-9 6 9 6V6z" /></svg>
+      </button>
+      <button class="tbtn play" id="playBtn" title="Play">
+        <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7L8 5z" /></svg>
+      </button>
+      <button class="tbtn" id="nextBtn" title="Next">
+        <svg viewBox="0 0 24 24"><path d="M18 6v12M6 6l9 6-9 6V6z" /></svg>
+      </button>
+      <button class="tbtn small" id="repeatBtn" title="Repeat" aria-pressed="false">
+        <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M3 11V9a4 4 0 014-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 01-4 4H3" /></svg>
+      </button>
+    </div>
+  </main>
+
+  <section class="playlist-wrap">
+    <div class="playlist-head">
+      <h2>Spool</h2>
+      <button class="sync-btn" id="syncBtn">Re-sync</button>
+    </div>
+    <ul class="playlist" id="playlist">
+      <!-- tracks injected here -->
+    </ul>
+    <p class="empty-note" id="emptyNote" hidden>
+      No tracks found yet. Drop audio files into <code>/music</code> in your GitHub repo, then tap Re-sync.
+    </p>
+  </section>
+
+  <footer class="foot-note">
+    Runs entirely from your GitHub repo, no ads, no video. For the best chance of playback continuing
+    with the screen off, add SPOOL to your home screen and keep it in the foreground app switcher.
+  </footer>
+
+</div>
+
+<audio id="audio" preload="metadata"></audio>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
