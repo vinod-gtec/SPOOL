@@ -13,10 +13,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+<div class="blobs" aria-hidden="true">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <span class="blob blob-3"></span>
+  <span class="blob blob-4"></span>
+</div>
 
 <div class="app">
 
@@ -31,11 +38,25 @@
   <main class="deck">
     <div class="disc-wrap">
       <svg class="disc" id="disc" viewBox="0 0 200 200" aria-hidden="true">
-        <circle cx="100" cy="100" r="98" class="disc-rim" />
+        <defs>
+          <linearGradient id="rimSpin" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF2E9A" />
+            <stop offset="33%" stop-color="#8B2CF5" />
+            <stop offset="66%" stop-color="#21E6C1" />
+            <stop offset="100%" stop-color="#FFD400" />
+          </linearGradient>
+          <linearGradient id="labelSpin" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FFD400" />
+            <stop offset="50%" stop-color="#FF7A1A" />
+            <stop offset="100%" stop-color="#FF2E9A" />
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="98" class="disc-rim" fill="url(#rimSpin)" />
+        <circle cx="100" cy="100" r="88" class="disc-inner" />
         <circle cx="100" cy="100" r="78" class="disc-groove" />
         <circle cx="100" cy="100" r="58" class="disc-groove" />
         <circle cx="100" cy="100" r="38" class="disc-groove" />
-        <circle cx="100" cy="100" r="16" class="disc-label" />
+        <circle cx="100" cy="100" r="16" class="disc-label" fill="url(#labelSpin)" />
         <circle cx="100" cy="100" r="4" class="disc-pin" />
       </svg>
     </div>
