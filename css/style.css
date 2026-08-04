@@ -1,8 +1,8 @@
 :root {
-  --bg-deep: #12002E;
-  --panel: #1D0B3E;
-  --panel-2: #260E52;
-  --line: #3A1A6E;
+  --bg-deep: #2D0A63;
+  --panel: rgba(38, 14, 82, 0.55);
+  --panel-2: rgba(58, 12, 90, 0.55);
+  --line: rgba(255, 255, 255, 0.18);
 
   --pink: #FF2E9A;
   --purple: #8B2CF5;
@@ -32,11 +32,19 @@ html, body {
 body {
   min-height: 100vh;
   position: relative;
-  background:
-    radial-gradient(ellipse 90% 60% at 15% 0%, rgba(255,46,154,0.28), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 90% 15%, rgba(33,230,193,0.22), transparent 55%),
-    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(139,44,245,0.30), transparent 60%),
-    var(--bg-deep);
+  background: linear-gradient(120deg, #2D0A63, #C2138B, #6A0DAD, #FF7A1A, #0FA3A3, #2D0A63);
+  background-size: 400% 400%;
+  animation: bgShift 20s ease infinite;
+}
+
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
 }
 
 /* ---------- floating blobs ---------- */
@@ -50,8 +58,8 @@ body {
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.55;
+  filter: blur(70px);
+  opacity: 0.75;
   mix-blend-mode: screen;
 }
 .blob-1 {
@@ -164,6 +172,8 @@ body {
 /* ---------- deck ---------- */
 .deck {
   background: linear-gradient(165deg, var(--panel), var(--panel-2));
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
   border: 1px solid var(--line);
   border-radius: 26px;
   padding: 30px 22px 22px;
@@ -171,7 +181,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 18px;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 20px 60px rgba(139,44,245,0.25);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px rgba(0,0,0,0.35);
   position: relative;
   overflow: hidden;
 }
@@ -215,10 +225,10 @@ body {
 }
 
 .disc-rim { stroke: rgba(255,255,255,0.15); stroke-width: 1; }
-.disc-inner { fill: var(--panel); stroke: none; }
-.disc-groove { fill: none; stroke: rgba(255,255,255,0.12); stroke-width: 1; }
-.disc-label { stroke: rgba(255,255,255,0.25); stroke-width: 1; }
-.disc-pin { fill: var(--panel); }
+.disc-inner { fill: #24093F; stroke: none; }
+.disc-groove { fill: none; stroke: rgba(255,255,255,0.14); stroke-width: 1; }
+.disc-label { stroke: rgba(255,255,255,0.3); stroke-width: 1; }
+.disc-pin { fill: #24093F; }
 
 .now-playing {
   text-align: center;
@@ -361,11 +371,13 @@ body {
 /* ---------- playlist ---------- */
 .playlist-wrap {
   background: linear-gradient(165deg, var(--panel), var(--panel-2));
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
   border: 1px solid var(--line);
   border-radius: 26px;
   padding: 18px 8px 8px;
   flex: 1;
-  box-shadow: 0 12px 40px rgba(33,230,193,0.10);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
 }
 
 .playlist-head {
