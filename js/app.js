@@ -25,6 +25,7 @@
     playlist: document.getElementById("playlist"),
     emptyNote: document.getElementById("emptyNote"),
     syncBtn: document.getElementById("syncBtn"),
+    discWrap: document.querySelector(".disc-wrap"),
   };
 
   let tracks = [];        // [{name, title, url}]
@@ -247,6 +248,8 @@
       : '<path d="M8 5v14l11-7L8 5z"/>';
     el.playBtn.title = playing ? "Pause" : "Play";
     el.disc.classList.toggle("spinning", playing);
+    el.playBtn.classList.toggle("pulsing", playing);
+    if (el.discWrap) el.discWrap.classList.toggle("glow", playing);
     if ("mediaSession" in navigator) {
       navigator.mediaSession.playbackState = playing ? "playing" : "paused";
     }
